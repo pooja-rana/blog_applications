@@ -33,3 +33,13 @@ djangorestframework-simplejwt==5.4.0
 # **pre-commit** is used to for identifying simple issues before submission to code review
 # See https://pre-commit.com/
 pre-commit==2.20.0
+
+
+# **social-auth-app-django** is used to for login user through the social media
+# See https://pypi.org/project/social-auth-app-django/
+social-auth-app-django==5.4.3
+
+
+# **django-allauth** is used to for  3rd party (social) account authentication.
+# See https://pypi.org/project/django-allauth/
+django-allauth==64.2.1
