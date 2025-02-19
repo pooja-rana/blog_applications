@@ -1,0 +1,3 @@
+from .user_register_view import UserDetailRegisterView
+from .user_login_view import UserLoginView
+from .user_profile_update_view import UserProfileUpdateView
