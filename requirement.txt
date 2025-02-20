@@ -43,3 +43,12 @@ social-auth-app-django==5.4.3
 # **django-allauth** is used to for  3rd party (social) account authentication.
 # See https://pypi.org/project/django-allauth/
 django-allauth==64.2.1
+
+
+# **flake8** is used to check for PEP8 compliance
+# See http://flake8.pycqa.org/en/latest/index.html
+flake8==5.0.4
+
+# **django-filter** use for fiter the data in models
+# see https://django-filter.readthedocs.io/en/stable/guide/install.html
+django-filter==22.1
