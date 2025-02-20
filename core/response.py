@@ -22,3 +22,21 @@ class ResponseHandler:
         )
         response_dict.update(kwargs)
         return Response(response_dict, headers=headers)
+
+    @staticmethod
+    def bad_request(
+            message: str = "",
+            payload: dict = {},
+            headers: dict = {},
+            status_code: int = status.HTTP_400_BAD_REQUEST,
+            *args,
+            **kwargs
+    ) -> Response:
+        response_dict = OrderedDict(
+            message=message,
+            status_code=status_code,
+            status=False,
+            payload=payload
+        )
+        response_dict.update(kwargs)
+        return Response(response_dict, status=status_code, headers=headers)
