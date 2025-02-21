@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 from django.utils import timezone
 
 from pathlib import Path
@@ -25,8 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e_z^3d#(@a#g#)!kv@_z&w0azfj%o1=u)=9!(8&0t2qt7xw2th'
-
+SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -105,7 +105,7 @@ DATABASES = {
         'NAME':env.str("POSTGRES_DB"),
         'USER': env.str("POSTGRES_USER"),
         'PASSWORD': env.str("POSTGRES_PASSWORD"),
-        'HOST': env.str("POSTGRES_HOST"),
+        'HOST': "localhost",
         'PORT': env.str("POSTGRES_PORT"),
     }
 }
@@ -118,7 +118,13 @@ AUTHENTICATION_BACKENDS = (
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "100/hour",
+    },
 }
 
 SIMPLE_JWT = {
@@ -197,4 +203,30 @@ SOCIALACCOUNT_PROVIDERS = {
             "access_type": "online",
         },
     },
+}
+
+
+#celery configuration
+
+CELERY_BROKER_URL = env.str('CELERY_BROKER_URL')
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+
+# email comfiguration
+EMAIL_BACKEND = env.str("EMAIL_BACKEND")
+EMAIL_HOST = env.str("EMAIL_HOST")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = env.str("EMAIL_USE_TLS")
+EMAIL_PORT = env.str("EMAIL_PORT")
+DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
+
+
+#caches databases
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    }
 }

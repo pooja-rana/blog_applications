@@ -34,7 +34,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     publication_date = serializers.DateTimeField(
         format="%d-%m-%Y %H:%M",
-        input_formats="%d-%m-%Y %H:%M",
+        input_formats=["%d-%m-%Y %H:%M"],
         required=True,
         allow_null=True,
         error_messages={

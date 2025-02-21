@@ -52,3 +52,16 @@ flake8==5.0.4
 # **django-filter** use for fiter the data in models
 # see https://django-filter.readthedocs.io/en/stable/guide/install.html
 django-filter==22.1
+
+# **celery** configuration for asynchronous task
+# see https://realpython.com/asynchronous-tasks-with-django-and-celery/
+celery==5.2.7
+
+# **redis server** use for queue celery task
+# see https://redis.io/docs/getting-started/installation/install-redis-on-linux/
+redis==4.4.4
+
+
+# **dj_rest_auth** use for social media authentication
+# see https://dj-rest-auth.readthedocs.io/
+dj_rest_auth==7.0.1
