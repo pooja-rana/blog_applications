@@ -1,5 +1,3 @@
-from rest_framework import serializers
-
 from core.models import User
 from .user_register_serializer import UserRegisterSerializer
 

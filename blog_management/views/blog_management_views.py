@@ -3,6 +3,7 @@ from http.client import responses
 from rest_framework import filters
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -24,7 +25,7 @@ class BlogViewSet(ModelViewSet):
     ordering_fields = ["publication_date"]
     pagination_class = ListingPaginator
     permission_classes = [IsAuthenticated]
-
+    throttle_classes = [UserRateThrottle]
 
     def create(self, request):
         """ create method for the publish blog"""
