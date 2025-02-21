@@ -9,9 +9,9 @@ class Blog(models.Model):
     publication_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True)
     content = models.TextField()
-    category =  models.CharField(max_length=10, choices=CategoryConst.choices(), null=True, blank=True)
+    category =  models.CharField(max_length=10, choices=CategoryConst.get_choices(), null=True, blank=True)
     tags = models.ManyToManyField("Tag", null=True, blank=True)
-    status = models.CharField(max_length=10, choices=BlogStatusConst.choices(), default="draft")
+    status = models.CharField(max_length=10, choices=BlogStatusConst.get_choices(), default="draft")
 
     def __str__(self):
         return self.title
