@@ -103,5 +103,24 @@ This will:
 - Start Redis (`redis` container)
 - Start Celery workers (`celery_worker` container)
 
-MIT License
 
+### 4. **Create .env based on environment** :smile:
+We have to create the **.env** at our project level as all the credentials and configuration will defined into **.env** file. With help of [environ](https://pypi.org/project/environs/) package python will load it and use it. this **.env** is use in docker as well. Following table contains all the configuration with optional flag, default value, docker required variables, project required variables.
+
+| Variable Name             | Optional | Default Value                               | Docker                                 | Project                                       |
+|---------------------------|----------|---------------------------------------------|----------------------------------------|-----------------------------------------------|
+| POSTGRES_DB               | NO       |                                             | [Yes] in postgres container required   | [Yes] for connecting to database              |
+| POSTGRES_HOST             | NO       | db                                          | [Yes] in docker db service itself host | [Yes] for connectiong to db service           |
+| POSTGRES_USER             | NO       | postgres                                    | [Yes] postgres image need required     | [Yes] for connecting to database              |
+| POSTGRES_PASSWORD         | NO       | postgres                                    | [Yes] postgres image need required     | [Yes] for connecting to database              |
+| POSTGRES_PORT             | NO       | 5432                                        | [Yes] postgres image need required     | [Yes] for connecting to               |
+| DJANGO_SUPERUSER_PASSWORD | YES      | admin                                       | [No]                                   | [Yes] `createsuperuser` commnad will use this |
+| DJANGO_SUPERUSER_EMAIL    | YES      | admin@admin.com                             | [No]                                   | [Yes] `createsuperuser` commnad will use this |
+| CELERY_BROKER_URL         | NO       | redis://localhost:6379/0                      | [NO]                                   | [Yes]                                         |
+| CELERY_RESULT_BACKEND     | NO       | redis://localhost:6379/0                      | [NO]                                   | [Yes]                                         |
+| EMAIL_BACKEND             | NO       | django.core.mail.backends.smtp.EmailBackend | [NO]                                   | [Yes]                                         | EMAIL_HOST | NO| smtp.gmail.com | [NO] | [Yes]
+| EMAIL_HOST_USER           | NO       | add your email                           | [NO]                                   | [Yes]                                         |
+| EMAIL_HOST_PASSWORD       | NO       | add your pass                                         | [NO]                                   | [Yes]                                         |
+| EMAIL_USE_TLS             | NO       | True                                        | [NO]                                   | [Yes]                                         |
+| EMAIL_PORT                | NO       | 587                                         | [NO]                                   | [Yes]                                         |
+| DEFAULT_FROM_EMAIL        | NO       | EMAIL_HOST_USER                             | [NO]                                   | [Yes]                                         |
