@@ -16,7 +16,7 @@ try:
         user=os.getenv("POSTGRES_USER"),
         password=os.getenv("POSTGRES_PASSWORD"),
         host="db",  # Matches service name in docker-compose.yml
-        port=os.getenv("POSTGRES_PORT", "5432")  # Default to 5432 if not set
+        port=5432  # Default to 5432 if not set
     )
     conn.close()
 except psycopg2.OperationalError:
